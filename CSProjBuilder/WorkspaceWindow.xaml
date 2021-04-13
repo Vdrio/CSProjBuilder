@@ -8,13 +8,13 @@
         Title="Workspace" Height="600" Width="800" Background="#242424">
 	<DockPanel>
 		<StackPanel Margin="10,10" DockPanel.Dock="Left" MaxWidth="330">
-			<Label FontSize="25" Foreground="#e5e5e5">WPF- My Project</Label>
+			<Label FontSize="25" Foreground="#e5e5e5" x:Name="ProjectNameLabel">WPF- My Project</Label>
 			<StackPanel Orientation="Horizontal">
 				<Label FontSize="16" Height="30" Foreground="#e5e5e5">Project Icon:</Label>
-				<TextBlock Width="120" Background="#484848" Foreground="#e5e5e5" Height="25"></TextBlock>
-				<Button Width="30" Margin="5,0" Padding="5,0" Height="25">...</Button>
+				<TextBlock Width="120" Background="#484848" Foreground="#e5e5e5" Height="25" x:Name="IconNameText"></TextBlock>
+				<Button Width="30" Margin="5,0" Padding="5,0" Height="25" Click="Button_Click_4">...</Button>
 				<StackPanel Background="#484848" Margin="0" Height="50" Width="50">
-					<Image Height="50" Width="50" ></Image>
+					<Image Height="50" Width="50" x:Name="IconPreviewImage"></Image>
 				</StackPanel>
 			</StackPanel>
 			<Button Height="40" Width="150" HorizontalAlignment="Left" FontSize="16" Background="#484848" Foreground="#e5e5e5">Open .csproj file</Button>
@@ -31,13 +31,15 @@
 			</ScrollViewer>
 			<StackPanel Orientation="Horizontal">
 				<Label Margin="0,10,0,0" FontSize="20" Height="40" Foreground="#e5e5e5">Project References</Label>
-				<Button Background="#484848" Foreground="#e5e5e5" Margin="15,5,0,0" Height="30" Width="50">Add</Button>
+				<Button Background="#484848" Foreground="#e5e5e5" Margin="15,5,0,0" Height="30" Width="50" Click="Button_Click_3">Add</Button>
 
 			</StackPanel>
 			<StackPanel Height="1" HorizontalAlignment="Left" Width="300" Background="#e5e5e5"></StackPanel>
-			<StackPanel CanVerticallyScroll="True" CanHorizontallyScroll="False" MinHeight="50" MaxHeight="150">
+			<ScrollViewer MinHeight="50" MaxHeight="150" Padding="0">
+				<StackPanel CanVerticallyScroll="True" CanHorizontallyScroll="False" MinHeight="50" x:Name="ProjectReferencesPanel">
 
-			</StackPanel>
+				</StackPanel>
+			</ScrollViewer>
 		</StackPanel>
 		<StackPanel Margin="10,10" HorizontalAlignment="Stretch" MinWidth="425" DockPanel.Dock="Right">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

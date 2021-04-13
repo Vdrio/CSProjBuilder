@@ -99,7 +99,7 @@ namespace CSProjBuilder
 			}
 		}
 
-		private void RebuildCSProjFile(bool isRelease = false)
+		internal void RebuildCSProjFile(bool isRelease = false)
 		{
 			if (!File.Exists(CSProjFilePath))
 			{
@@ -125,12 +125,15 @@ namespace CSProjBuilder
 			}
 			csProj.WriteAttributeString("Sources", "@(Compile)");
 			csProj.WriteAttributeString("References", "@(Reference)");
+
+			csProj.WriteEndElement();
+			csProj.WriteEndElement();
 			if (IconFileName != null)
 			{
-				csProj.WriteAttributeString("Win32Icon", "img\\" + IconFileName);
+				csProj.WriteStartElement("PropertyGroup");
+				csProj.WriteElementString("ApplicationIcon", "img\\" + IconFileName);
+				csProj.WriteEndElement();
 			}
-			csProj.WriteEndElement();
-			csProj.WriteEndElement();
 			csProj.WriteStartElement("ItemGroup");
 			if (SolutionType == SolutionTypeEnum.WPF)
 			{
@@ -180,6 +183,20 @@ namespace CSProjBuilder
 			csProj.WriteEndDocument();
 			csProj.Close();
 			
+		}
+
+		internal void AddReferenceFile(string fullFileName, bool rebuildCsProj = true)
+		{
+			string fileName = Path.GetFileName(fullFileName);
+			References.Add(fileName);
+			if (!File.Exists(Path.Combine(WorkingDirectoryPath, "lib", fileName)))
+			{
+				File.Copy(fullFileName, Path.Combine(WorkingDirectoryPath, "lib", fileName));
+			}
+			if (rebuildCsProj)
+			{
+				RebuildCSProjFile();
+			}
 		}
 
 		private void WriteDefaultWindowsReferences(XmlWriter csProj, bool isWPF)

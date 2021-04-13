@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace CSProjBuilder
 {
@@ -33,6 +36,12 @@ namespace CSProjBuilder
 			InitializeComponent();
 			Current = this;
 			CurrentSolution = solution;
+			ProjectNameLabel.Content = solution.SolutionType.ToString() + "- " + solution.SolutionName;
+			if (!string.IsNullOrWhiteSpace(solution.IconFileName))
+			{
+				IconNameText.Text = solution.IconFileName;
+				IconPreviewImage.Source = new BitmapImage(new Uri(Path.Combine(CurrentSolution.WorkingDirectoryPath, "img", solution.IconFileName)));
+			}
 			foreach(string s in solution.Sources)
 			{
 				AddProjectFile(s);
@@ -42,6 +51,11 @@ namespace CSProjBuilder
 		internal void AddProjectFile(string text)
 		{
 			ProjectFilesPanel.Children.Add(new SelectableProjectFile(CurrentSolution, text, text.Contains(".xaml") && !text.Contains(".cs")));
+		}
+
+		internal void AddProjectReference(string text)
+		{
+			ProjectReferencesPanel.Children.Add(new SelectableProjectFile(CurrentSolution, text, text.Contains(".xaml") && !text.Contains(".cs")));
 		}
 
 		//New Project File
@@ -139,6 +153,37 @@ namespace CSProjBuilder
 		private void Button_Click_2(object sender, RoutedEventArgs e)
 		{
 			var p = Build(true);
+		}
+
+
+		//Add Reference
+		private void Button_Click_3(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.Filter = "Libraries (*.dll) | *.dll";
+			if (fileDialog.ShowDialog() == true)
+			{
+				CurrentSolution.AddReferenceFile(fileDialog.FileName);
+			}
+		}
+
+		//Browse for project icon
+		private void Button_Click_4(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.Filter = "Icons (*.ico) | *.ico";
+			if (fileDialog.ShowDialog() == true)
+			{
+				if (!File.Exists(Path.Combine(CurrentSolution.WorkingDirectoryPath, "img", Path.GetFileName(fileDialog.FileName))))
+				{
+					File.Copy(fileDialog.FileName, Path.Combine(CurrentSolution.WorkingDirectoryPath, "img", Path.GetFileName(fileDialog.FileName)));
+				}
+				CurrentSolution.IconFileName = Path.GetFileName(fileDialog.FileName);
+				IconNameText.Text = Path.GetFileName(fileDialog.FileName);
+				IconPreviewImage.Source = new BitmapImage(new Uri(Path.Combine(CurrentSolution.WorkingDirectoryPath, "img", Path.GetFileName(fileDialog.FileName))));
+				CurrentSolution.RebuildCSProjFile();
+				CurrentSolution.Save();
+			}
 		}
 	}
 }
