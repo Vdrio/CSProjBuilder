@@ -138,7 +138,14 @@ namespace CSProjBuilder
 			csProj.WriteAttributeString("Sources", "@(Compile)");
 			csProj.WriteAttributeString("References", "@(Reference)");
 
+			//end csc
 			csProj.WriteEndElement();
+
+			//end target
+			csProj.WriteEndElement();
+			csProj.WriteStartElement("PropertyGroup");
+			csProj.WriteElementString("OutputType", "WinExe");
+			csProj.WriteElementString("OutputPath", "debug\\");
 			csProj.WriteEndElement();
 			if (IconFileName != null)
 			{
