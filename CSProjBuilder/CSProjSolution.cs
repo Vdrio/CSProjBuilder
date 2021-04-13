@@ -105,6 +105,14 @@ namespace CSProjBuilder
 
 		internal void RebuildCSProjFile(bool isRelease = false)
 		{
+			if (Sources == null)
+			{
+				Sources = new List<string>();
+			}
+			if (References == null)
+			{
+				References = new List<string>();
+			}
 			if (!File.Exists(CSProjFilePath))
 			{
 				File.CreateText(CSProjFilePath);
