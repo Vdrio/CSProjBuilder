@@ -2,17 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static CSProjBuilder.Constants;
 
 namespace CSProjBuilder
 {
 	public class Settings
 	{
 		//Variable that is default to false so that it is only true once setup is complete
-		public bool CompletedSetup { get; set; } = false;
+		public bool CompletedSetup { get; set; }
 
 		//Contains a list of strings that represent the file paths of the recently opened solutions
-		public List<string> PreviouslyOpenedSolutionPaths { get; set; } = new List<string>();
+		public List<string> PreviouslyOpenedSolutionPaths { get; set; }
 
 		//The path that lets the program know where msbuild.exe and the default .net dlls
 		public string MSBuildDirectoryPath { get; set; }
@@ -27,7 +26,7 @@ namespace CSProjBuilder
 		{
 			try
 			{
-				File.WriteAllText(SettingsFilePath, JsonConvert.SerializeObject(CurrentSettings));
+				File.WriteAllText(Constants.SettingsFilePath, JsonConvert.SerializeObject(CurrentSettings));
 			}
 			catch(Exception ex)
 			{

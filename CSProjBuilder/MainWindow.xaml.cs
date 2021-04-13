@@ -59,6 +59,10 @@ namespace CSProjBuilder
 
 		private void LoadRecentProjects()
 		{
+			if (Settings.CurrentSettings.PreviouslyOpenedSolutionPaths == null)
+			{
+				Settings.CurrentSettings.PreviouslyOpenedSolutionPaths = new List<string>();
+			}
 			if (Settings.CurrentSettings.PreviouslyOpenedSolutionPaths.Count > 0)
 			{
 				foreach(string path in Settings.CurrentSettings.PreviouslyOpenedSolutionPaths)

@@ -31,8 +31,8 @@ namespace CSProjBuilder
 		[JsonIgnore]
 		public string SourceDirectory { get { return System.IO.Path.Combine(WorkingDirectoryPath, "source"); } }
 
-		public List<string> Sources { get; set; } = new List<string>();
-		public List<string> References { get; set; } = new List<string>();
+		public List<string> Sources { get; set; }
+		public List<string> References { get; set; }
 
 		public CSProjSolution()
 		{
@@ -89,6 +89,10 @@ namespace CSProjBuilder
 
 		public void AddProjectFile(string fileName, bool rebuildCsProj = true)
 		{
+			if (Sources == null)
+			{
+				Sources = new List<string>();
+			}
 			if (!Sources.Contains(fileName))
 			{
 				Sources.Add(fileName);
@@ -187,6 +191,10 @@ namespace CSProjBuilder
 
 		internal void AddReferenceFile(string fullFileName, bool rebuildCsProj = true)
 		{
+			if (References == null)
+			{
+				References = new List<string>();
+			}
 			string fileName = Path.GetFileName(fullFileName);
 			References.Add(fileName);
 			if (!File.Exists(Path.Combine(WorkingDirectoryPath, "lib", fileName)))
