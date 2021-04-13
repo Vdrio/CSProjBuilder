@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using static CSProjBuilder.Constants;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -25,13 +24,13 @@ namespace CSProjBuilder
 
 		private void LoadSettings()
 		{
-			if (!Directory.Exists(SettingsDirectory))
+			if (!Directory.Exists(Constants.SettingsDirectory))
 			{
-				Directory.CreateDirectory(SettingsDirectory);
+				Directory.CreateDirectory(Constants.SettingsDirectory);
 			}
-			if (File.Exists(SettingsFilePath))
+			if (File.Exists(Constants.SettingsFilePath))
 			{
-				string settingsJson = File.ReadAllText(SettingsFilePath);
+				string settingsJson = File.ReadAllText(Constants.SettingsFilePath);
 				if (!string.IsNullOrWhiteSpace(settingsJson))
 				{
 					Settings.CurrentSettings = JsonConvert.DeserializeObject<Settings>(settingsJson);
@@ -39,7 +38,7 @@ namespace CSProjBuilder
 				else
 				{
 					Settings.CurrentSettings = new Settings();
-					File.WriteAllText(SettingsFilePath, JsonConvert.SerializeObject(Settings.CurrentSettings));
+					File.WriteAllText(Constants.SettingsFilePath, JsonConvert.SerializeObject(Settings.CurrentSettings));
 				}
 			}
 			else
