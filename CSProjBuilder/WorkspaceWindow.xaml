@@ -1,0 +1,56 @@
+﻿<Window x:Class="CSProjBuilder.WorkspaceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSProjBuilder"
+        mc:Ignorable="d"
+        Title="Workspace" Height="600" Width="800" Background="#242424">
+	<DockPanel>
+		<StackPanel Margin="10,10" DockPanel.Dock="Left" MaxWidth="330">
+			<Label FontSize="25" Foreground="#e5e5e5">WPF- My Project</Label>
+			<StackPanel Orientation="Horizontal">
+				<Label FontSize="16" Height="30" Foreground="#e5e5e5">Project Icon:</Label>
+				<TextBlock Width="120" Background="#484848" Foreground="#e5e5e5" Height="25"></TextBlock>
+				<Button Width="30" Margin="5,0" Padding="5,0" Height="25">...</Button>
+				<StackPanel Background="#484848" Margin="0" Height="50" Width="50">
+					<Image Height="50" Width="50" ></Image>
+				</StackPanel>
+			</StackPanel>
+			<Button Height="40" Width="150" HorizontalAlignment="Left" FontSize="16" Background="#484848" Foreground="#e5e5e5">Open .csproj file</Button>
+			<StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+				<Label Margin="0,0,0,0" FontSize="20" Height="40" Foreground="#e5e5e5">Project Files</Label>
+				<Button Background="#484848" Foreground="#e5e5e5" Margin="15,0,0,0" Height="30" Width="50" Click="Button_Click">New</Button>
+				<Button Background="#484848" Foreground="#e5e5e5" Margin="15,0,0,0" Height="30" Width="85">Existing...</Button>
+			</StackPanel>
+			<StackPanel Height="1" HorizontalAlignment="Left" Width="300" Background="#e5e5e5"></StackPanel>
+			<ScrollViewer MinHeight="50" MaxHeight="150" Padding="0">
+				<StackPanel CanVerticallyScroll="True" CanHorizontallyScroll="False" MinHeight="50" x:Name="ProjectFilesPanel">
+
+				</StackPanel>
+			</ScrollViewer>
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="0,10,0,0" FontSize="20" Height="40" Foreground="#e5e5e5">Project References</Label>
+				<Button Background="#484848" Foreground="#e5e5e5" Margin="15,5,0,0" Height="30" Width="50">Add</Button>
+
+			</StackPanel>
+			<StackPanel Height="1" HorizontalAlignment="Left" Width="300" Background="#e5e5e5"></StackPanel>
+			<StackPanel CanVerticallyScroll="True" CanHorizontallyScroll="False" MinHeight="50" MaxHeight="150">
+
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Margin="10,10" HorizontalAlignment="Stretch" MinWidth="425" DockPanel.Dock="Right">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button Background="#484848" Foreground="#e5e5e5" Height="30" Width="60" Click="Button_Click_1">Build</Button>
+				<Button Background="#484848" Foreground="#e5e5e5" Height="30" Width="100" Margin="20,0,0,0" Click="Button_Click_2">Build And Run</Button>
+				<Button Background="#484848" Foreground="#e5e5e5" Height="30" Width="80" Margin="20,0,0,0">Release</Button>
+			</StackPanel>
+			<Label Margin="0,5,0,0" FontSize="16" Height="30" Foreground="#e5e5e5">Build Output</Label>
+			<ScrollViewer Padding="10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" MaxHeight="475">
+				<StackPanel Background="#484848" x:Name="OutputPanel" MinHeight="425" HorizontalAlignment="Stretch" MinWidth="385">
+
+				</StackPanel>
+			</ScrollViewer>
+		</StackPanel>
+	</DockPanel>
+</Window>

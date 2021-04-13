@@ -1,0 +1,22 @@
+﻿<Window x:Class="CSProjBuilder.SetupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSProjBuilder"
+        mc:Ignorable="d" Background="#242424"
+        Title="CSProj Builder Setup" Height="170" MinWidth="350" Width="350">
+	<StackPanel Orientation="Vertical">
+		<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10" Orientation="Horizontal">
+			<Label Width="110" Foreground="#e5e5e5">MSBuild Directory:</Label>
+			<TextBox Foreground="#e5e5e5" x:Name="BuildPathText" Height="25" FontSize="15" Width="190" Background="#484848"></TextBox>
+			<Button Margin="5,0" Padding="5,0" Click="Button_Click">...</Button>
+		</StackPanel>
+		<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10" Orientation="Horizontal">
+			<Label Width="110" Foreground="#e5e5e5">Text Editor Exe:</Label>
+			<TextBox Foreground="#e5e5e5" x:Name="NppPathText" Height="25" FontSize="15" Width="190" Background="#484848"></TextBox>
+			<Button Margin="5,0" Padding="5,0" Click="Button_Click_2">...</Button>
+		</StackPanel>
+		<Button Click="Button_Click_1" Margin="15,10" Padding="5,5" HorizontalAlignment="Right">Apply</Button>
+	</StackPanel>
+</Window>

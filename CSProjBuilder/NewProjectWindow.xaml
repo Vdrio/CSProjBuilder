@@ -1,0 +1,25 @@
+﻿<Window x:Class="CSProjBuilder.NewProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSProjBuilder"
+        mc:Ignorable="d" Background="#242424"
+        Title="New Project" Height="200" Width="435">
+	<StackPanel Margin="10,10">
+		<StackPanel Orientation="Horizontal">
+			<Label Foreground="#e5e5e5" Width="125" FontSize="14">Project Name:</Label>
+			<TextBox x:Name="ProjectNameText" FontSize="16" Height="30" Width="250" Background="#484848" Foreground="#e5e5e5"></TextBox>
+		</StackPanel>
+		<StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+			<Label Width="125" Foreground="#e5e5e5" FontSize="14">Project Directory:</Label>
+			<TextBlock IsEnabled="False" x:Name="ProjectDirectoryText" Height="30" Width="250" Background="#484848" FontSize="16" Foreground="#e5e5e5"></TextBlock>
+			<Button Padding="5,0" Margin="5,0,0,0" Click="Button_Click_1">...</Button>
+		</StackPanel>
+		<StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+			<Label Foreground="#e5e5e5" FontSize="14">Create New Project Folder</Label>
+			<CheckBox x:Name="CreateFolderCheck" Margin="0,10,0,0" IsChecked="True"></CheckBox>
+		</StackPanel>
+		<Button Click="Button_Click" Padding="10,0" Height="30" Background="#484848" Foreground="#e5e5e5" HorizontalAlignment="Right">Create</Button>
+	</StackPanel>
+</Window>

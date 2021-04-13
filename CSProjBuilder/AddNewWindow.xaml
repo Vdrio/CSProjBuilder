@@ -1,0 +1,21 @@
+﻿<Window x:Class="CSProjBuilder.AddNewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSProjBuilder"
+        mc:Ignorable="d" Background="#242424"
+        Title="Add New" Height="250" Width="250">
+	<StackPanel Height="270">
+		<StackPanel CanVerticallyScroll="True" CanHorizontallyScroll="False" Margin="10,10" Height="150">
+			<Button Click="Button_Click" Background="#484848" Height="30" Width="200" HorizontalAlignment="Left" FontSize="14" Foreground="#e5e5e5" Margin="0,0,0,10">Class (.cs)</Button>
+			<Button Click="Button_Click_1" Background="#484848" Height="30" Width="200" HorizontalAlignment="Left" FontSize="14" Foreground="#e5e5e5" Margin="0,0,0,10">Window (.xaml + .cs)</Button>
+			<Button Click="Button_Click_2" Background="#484848" Height="30" Width="200" HorizontalAlignment="Left" FontSize="14" Foreground="#e5e5e5" Margin="0,0,0,10">User Control (.xaml + .cs)</Button>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal">
+			<TextBox x:Name="NewFileNameText" FontSize="16" Foreground="#e5e5e5" VerticalAlignment="Bottom" Height="30" Width="170" Background="#484848" Margin="10,10" HorizontalAlignment="Left"></TextBox>
+			<Button Click="Button_Click_3" Background="#484848" Height="30" Width="40" Foreground="#e5e5e5">Add</Button>
+		</StackPanel>
+	</StackPanel>
+</Window>
